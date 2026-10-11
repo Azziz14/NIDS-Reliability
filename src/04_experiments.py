@@ -3,14 +3,15 @@
 
 
 # ================= NOTEBOOK CELL 21 =================
-## 18. Experiment runner
-
-The runner explicitly separates:
-- reference vs temporal training data,
-- binary vs multiclass labels,
-- normal vs stressed test inputs.
-
-The fitted model is reused for normal, 10% missingness, and 20% missingness evaluation. This is important: missingness is a **test-time stress factor**, not a second training protocol.
+# 18. Experiment runner
+#
+# The runner explicitly separates:
+# - reference vs temporal training data,
+# - binary vs multiclass labels,
+# - normal vs stressed test inputs.
+#
+# The fitted model is reused for normal, 10% missingness, and 20% missingness
+# evaluation. Missingness is a test-time stress factor, not a second training protocol.
 
 
 # ================= NOTEBOOK CELL 22 =================

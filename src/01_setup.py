@@ -23,8 +23,8 @@ SEEDS = [42, 52, 62, 72, 82]
 # ---------------- RUN MODES ----------------
 # QUICK_VALIDATION: finishes much faster and verifies the entire pipeline.
 # PAPER_MODE: uses the full verified training partitions and all five seeds.
-QUICK_VALIDATION = True
-PAPER_MODE = False
+QUICK_VALIDATION = False
+PAPER_MODE = True
 RUN_EXPERIMENTS = True
 
 # Bounded validation size. This is NOT used in PAPER_MODE.
@@ -60,7 +60,13 @@ FORBIDDEN_TIMESTAMP_FEATURES = {
 
 # Threading is intentionally conservative for shared Colab runtimes.
 N_JOBS = max(1, min(2, (os.cpu_count() or 2)))
-OUTPUT_DIR = Path("/content/reliability_outputs")
+# Resolve OUTPUT_DIR relative to this file so the pipeline works outside Colab.
+# Falls back to /content/reliability_outputs only when running inside Colab.
+_in_colab = os.path.isdir("/content") and os.path.isdir("/usr") and sys.platform != "win32"
+if _in_colab:
+    OUTPUT_DIR = Path("/content/reliability_outputs")
+else:
+    OUTPUT_DIR = Path(__file__).resolve().parent / "results"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 np.random.seed(SEED)
@@ -107,19 +113,19 @@ print("Core imports loaded. XGBoost available:", XGB_AVAILABLE)
 
 
 # ================= NOTEBOOK CELL 3 =================
-## 3. Dataset source — automatic Hugging Face import
-
-The notebook follows the same automatic import pattern as the proven FAST v4 notebook:
-`huggingface_hub.snapshot_download()` downloads CICIDS2017 directly into the Colab runtime.
-
-No Google Drive, manual upload, or manually entered dataset path is required.
-
-The loader accepts CICIDS2017 CSV variants with a valid `Label` column. If a genuine row-level
-`Timestamp` is present and valid, it is used. If the selected source does not preserve a usable
-row-level timestamp, temporal evaluation uses the documented CICIDS2017 capture-day/file order.
-
-**Important:** `Flow Duration`, `Total TCP Flow Time`, packet counts, and other flow features are
-never substituted for a timestamp.
+# 3. Dataset source — automatic Hugging Face import
+#
+# The notebook follows the same automatic import pattern as the proven FAST v4 notebook:
+# huggingface_hub.snapshot_download() downloads CICIDS2017 directly into the Colab runtime.
+#
+# No Google Drive, manual upload, or manually entered dataset path is required.
+#
+# The loader accepts CICIDS2017 CSV variants with a valid Label column. If a genuine row-level
+# Timestamp is present and valid, it is used. If the selected source does not preserve a usable
+# row-level timestamp, temporal evaluation uses the documented CICIDS2017 capture-day/file order.
+#
+# Important: Flow Duration, Total TCP Flow Time, packet counts, and other flow features are
+# never substituted for a timestamp.
 
 
 # ================= NOTEBOOK CELL 4 =================

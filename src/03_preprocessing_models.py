@@ -3,17 +3,19 @@
 
 
 # ================= NOTEBOOK CELL 13 =================
-## 11. Leakage-safe preprocessing
-
-There must be **no missing values in the matrices actually passed to the estimators**.
-
-For each split:
-- fit the median imputer on training data only,
-- transform train and test,
-- replace any residual non-finite values defensively,
-- fit the scaler on training data only for Logistic Regression.
-
-For missingness stress, NaNs are injected **only into the test matrix**, then passed through the already-fitted train-derived imputer. This keeps the stress factor controlled and prevents leakage.
+# 11. Leakage-safe preprocessing
+#
+# There must be no missing values in the matrices actually passed to the estimators.
+#
+# For each split:
+# - fit the median imputer on training data only,
+# - transform train and test,
+# - replace any residual non-finite values defensively,
+# - fit the scaler on training data only for Logistic Regression.
+#
+# For missingness stress, NaNs are injected only into the test matrix, then passed
+# through the already-fitted train-derived imputer. This keeps the stress factor
+# controlled and prevents leakage.
 
 
 # ================= NOTEBOOK CELL 14 =================
@@ -39,7 +41,9 @@ def transform_with_imputer(imputer, X_raw):
 
 def make_lr(seed):
     return LogisticRegression(
-        max_iter=120,
+        # max_iter=120 is sufficient for quick validation.
+        # In PAPER_MODE with full data, lbfgs needs more iterations to converge.
+        max_iter=120 if not PAPER_MODE else 300,
         solver="lbfgs",
         tol=1e-3,
         random_state=seed
@@ -151,6 +155,19 @@ print("Temporal test-only classes:", len(unseen_temporal_classes))
 if unseen_temporal_classes:
     print("These classes are genuinely absent from temporal training:")
     print(unseen_temporal_classes)
+
+# Per-class temporal train/test counts for the audit record.
+# This separates unseen-class effects from degradation on seen classes.
+all_temporal_classes = sorted(temporal_train_classes | temporal_test_classes)
+print("\nPer-class temporal split counts:")
+print(f"  {'Class':40s} {'Train':>8} {'Test':>8} {'Unseen':>8}")
+y_temp_train = y_sorted[temporal_train_idx]
+y_temp_test = y_sorted[temporal_test_idx]
+for cls in all_temporal_classes:
+    n_train = int(np.sum(y_temp_train == cls))
+    n_test = int(np.sum(y_temp_test == cls))
+    unseen_flag = "YES" if cls in unseen_temporal_classes else ""
+    print(f"  {cls:40s} {n_train:>8,} {n_test:>8,} {unseen_flag:>8}")
 
 def take_sorted_rows(indices):
     """Materialize only requested rows; no second full feature matrix is retained."""

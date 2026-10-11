@@ -44,12 +44,11 @@ else:
 
 # ================= NOTEBOOK CELL 25 =================
 # 21. Interaction analysis
-# Final interaction results are computed from the same final condition summary
-# used for the paper tables (five-seed mean in PAPER_MODE; seed-42 in validation).
-if not final_interaction_results.empty:
-    display(final_interaction_results)
-else:
-    print("Interaction table will populate after the repeated/primary experiment.")
+# final_interaction_results is computed in 06_repeated_and_figures.py after the
+# repeated-seed aggregation completes. A display of that table is emitted there,
+# immediately after the variable is defined.
+# This placeholder preserves the original cell boundary marker only.
+print("Interaction analysis: results will be displayed after repeated-seed aggregation (06).")
 
 
 # ================= NOTEBOOK CELL 26 =================

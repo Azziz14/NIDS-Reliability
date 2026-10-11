@@ -3,23 +3,23 @@
 
 
 # ================= NOTEBOOK CELL 7 =================
-## 6. Temporal provenance policy
-
-The notebook uses the strongest temporal provenance actually available in the selected
-CICIDS2017 mirror:
-
-1. **Row-level mode:** if every selected source file contains a real `Timestamp`, it is
-   parsed and validated against the July 2017 capture period, then rows are sorted by it.
-2. **Capture-day mode:** if the selected mirror is the standard CICIDS2017 CSV variant
-   without row-level timestamps, temporal evaluation is performed by the original
-   capture-day/file order (Monday → Tuesday → Wednesday → Thursday → Friday).
-3. **Never:** `Flow Duration`, `Total TCP Flow Time`, packet counts, IAT values, or any
-   other model feature is treated as a timestamp.
-
-This is important because several public CICIDS2017 distributions differ in whether the
-identity/timestamp fields are retained. The original eight-file organization is stable,
-and the capture-day ordering is legitimate temporal provenance when row timestamps are
-absent.
+# 6. Temporal provenance policy
+#
+# The notebook uses the strongest temporal provenance actually available in the selected
+# CICIDS2017 mirror:
+#
+# 1. Row-level mode: if every selected source file contains a real Timestamp, it is
+#    parsed and validated against the July 2017 capture period, then rows are sorted by it.
+# 2. Capture-day mode: if the selected mirror is the standard CICIDS2017 CSV variant
+#    without row-level timestamps, temporal evaluation is performed by the original
+#    capture-day/file order (Monday -> Tuesday -> Wednesday -> Thursday -> Friday).
+# 3. Never: Flow Duration, Total TCP Flow Time, packet counts, IAT values, or any
+#    other model feature is treated as a timestamp.
+#
+# This is important because several public CICIDS2017 distributions differ in whether the
+# identity/timestamp fields are retained. The original eight-file organization is stable,
+# and the capture-day ordering is legitimate temporal provenance when row timestamps are
+# absent.
 
 # ================= NOTEBOOK CELL 8 =================
 # 6. Parse the actual Timestamp when available
@@ -197,9 +197,28 @@ for file_id, info in enumerate(schema_infos):
     if reference_feature_names is None:
         reference_feature_names = list(numeric_dict.keys())
     elif set(numeric_dict.keys()) != set(reference_feature_names):
-        raise ValueError(
-            f"{path.name}: numeric feature schema differs from earlier files."
-        )
+        # CICIDS2017 mirrors legitimately differ by a small number of columns
+        # (e.g. the Inbound column is absent in some daily files). Reduce to the
+        # common intersection rather than aborting. A hard error is only raised
+        # when the intersection is empty, which indicates a schema mismatch that
+        # cannot be recovered.
+        common = [c for c in reference_feature_names if c in numeric_dict]
+        only_in_new = set(numeric_dict.keys()) - set(reference_feature_names)
+        only_in_ref = set(reference_feature_names) - set(numeric_dict.keys())
+        if only_in_ref or only_in_new:
+            print(
+                f"  Schema difference in {path.name}: "
+                f"{len(only_in_ref)} cols dropped (absent in this file), "
+                f"{len(only_in_new)} cols ignored (absent in reference). "
+                f"Intersection: {len(common)} features."
+            )
+        if not common:
+            raise ValueError(
+                f"{path.name}: numeric feature intersection with reference is empty."
+            )
+        # Narrow reference feature names to the intersection so all subsequent
+        # files and the final matrix stay consistent.
+        reference_feature_names = common
 
     X_part = pd.DataFrame(
         {c: numeric_dict[c] for c in reference_feature_names},
