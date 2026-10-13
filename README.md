@@ -117,3 +117,6 @@ Outputs are dynamically generated and verified against source summaries (`result
    - No fabricated experimental results.
    - No temporal proxies (e.g. flow duration as fake timestamps).
    - Findings represent benchmark reliability profiles; they do not constitute proof of concept drift, adversarial robustness, universal model superiority, or production readiness.
+5. **Cross-Partition Duplicate Overlap Limitation:**
+   - 4,247 test flows (5.16% of the test partition) in the official UNSW-NB15 dataset are exact duplicates of training instances. While transformation and temporal sequence leakage are strictly zero, cross-partition duplicate overlap permits in-distribution flow memorization in the reference split. Zero leakage is qualified to transformation and chronological boundaries.
+

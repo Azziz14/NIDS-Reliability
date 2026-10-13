@@ -146,6 +146,15 @@ graph TD
 | UNSW-NB15 | XGBoost | Temp + 10% Miss | 0.4361 | 0.4663 | 0.7633 | 0.0277 | +18.77% |
 | UNSW-NB15 | XGBoost | Temp + 20% Miss | 0.4095 | 0.4352 | 0.7487 | 0.0300 | +23.72% |
 
+### Comparative Visualizations: Degradation Trajectories
+The cross-dataset evaluation figures illustrate the stark divergence between structural collapse (CICIDS2017) and continuous distribution drift (UNSW-NB15):
+
+![Figure Cross 1: Reference vs Chronological Macro-F1](results/cross_dataset/figure_cross_1_reference_vs_temporal.png)
+*Figure Cross-1: Reference vs. Chronological Macro-F1 across CICIDS2017 (Subplot A: Structural Floor Collapse) and UNSW-NB15 (Subplot B: Continuous Feature Drift).*
+
+![Figure Cross 2: Relative Degradation Across 6 Conditions](results/cross_dataset/figure_cross_2_degradation_comparison.png)
+*Figure Cross-2: Relative performance degradation from Reference baseline across all six conditions for both benchmark datasets.*
+
 ---
 
 ## 5. Stress Interaction Geometry: Non-Additive Effects
@@ -171,8 +180,11 @@ $$\text{Interaction} = D_{\text{Combined}} - (D_{\text{Temporal}} + D_{\text{Mis
 | UNSW-NB15 | XGBoost | 20% Missingness | +13.50% | +14.32% | +23.72% | **-4.10%** | Near-additive |
 
 ### Scientific Interpretation
-- In **CICIDS2017**, negative interaction terms ($-4\%$ to $-10\%$) reflect **boundary saturation**. When temporal holdout alone induces >94% degradation, the model is already operating at the structural floor; injecting 20% missingness cannot add an incremental 10% drop, yielding negative non-additivity.
-- In **UNSW-NB15**, where temporal degradation is moderate (~17–26%), the interaction terms remain close to zero ($-2.5\%$ to $+1.1\%$). This confirms that in continuous-support deployments, temporal drift and telemetry loss operate **near-additively**, meaning both stressors degrade orthogonal feature representations simultaneously.
+- In **CICIDS2017**, negative interaction terms ($-4.29\%$ to $-9.98\%$) reflect **boundary saturation**. When temporal holdout alone induces >94% degradation, the model is already operating at the structural floor; injecting 20% missingness cannot add an incremental 10% drop, yielding negative non-additivity.
+- In **UNSW-NB15**, where temporal degradation is moderate (11.85% to 16.83%), the multiclass interaction terms remain small (-0.41% to -4.57%, mean: -2.51%). This confirms that in continuous-support deployments, temporal drift and telemetry loss operate **near-additively**, meaning both stressors degrade orthogonal feature representations simultaneously without artificial floor saturation.
+
+![Figure Cross 3: Stress Interaction Comparison](results/cross_dataset/figure_cross_3_stress_interaction.png)
+*Figure Cross-3: Interaction effect comparison demonstrating floor-effect saturation in CICIDS2017 versus near-additive dynamics in UNSW-NB15.*
 
 ---
 
@@ -211,6 +223,7 @@ In strict adherence to the research constraints established in `AGENTS.md`:
 3. **No Universal Model Superiority:** While Random Forest and XGBoost demonstrated higher resilience than Logistic Regression across both datasets, this superiority is bounded by the evaluated tabular features and tree hyperparameters.
 4. **No Cross-Dataset Generalization:** Models trained on CICIDS2017 were not evaluated on UNSW-NB15 or vice versa. The evaluation compares reliability methodologies, not cross-dataset transferability.
 5. **No Production Readiness Claims:** Neither system is claimed to be production-ready. High false positive rates under stress conditions would cause operator alert fatigue in operational SOC environments.
+6. **Cross-Partition Duplicate Overlap Limitation:** The official UNSW-NB15 dataset partitions contain 4,247 identical test flows (5.16% of the test partition) shared with the training partition. While preprocessor transformations and temporal index sequences are strictly leakage-free (transformations fitted solely on train data), cross-partition duplicate flows permit flow-level memorization in the stratified reference split. Therefore, "zero leakage" is strictly qualified to transformation and chronological boundaries, and must not be interpreted as absolute cross-partition row uniqueness.
 
 ---
 
@@ -221,8 +234,49 @@ This research project delivers a reproducible, leakage-safe evaluation framework
 - Tree-based ensemble methods provide significantly greater telemetry fault-tolerance than linear classifiers.
 - Multi-stress evaluation (temporal shift + telemetry missingness) is indispensable for understanding operational degradation before deployment.
 
+![Figure Cross 4: Model Resilience Ranking](results/cross_dataset/figure_cross_4_model_resilience_ranking.png)
+*Figure Cross-4: Architectural resilience comparison ranking Random Forest, XGBoost, and Logistic Regression under reference vs. temporal conditions across both benchmark datasets.*
+
 ### Generated Deliverables Summary
 - **Part A Artifacts:** Complete five-seed paper outputs preserved at checkpoint `2fe4892`.
 - **Part B Artifacts:** 180-row authoritative dataset (`repeated_seed_results.csv`), summary statistics with 95% Student-$t$ CIs (`repeated_seed_summary.csv`), degradation tables, and Figures 1–6 in `results/unsw_nb15/`.
 - **Cross-Dataset Artifacts:** Comparative tables (`comparison_*.csv`) and comparative publication figures (`figure_cross_1` through `figure_cross_4`) in `results/cross_dataset/`.
 - **Documentation:** [UNSW_EXPERIMENT_DESIGN.md](file:///c:/Users/ashis/OneDrive/Desktop/pp1/NIDS-Reliability/UNSW_EXPERIMENT_DESIGN.md) and [CROSS_DATASET_REPORT.md](file:///c:/Users/ashis/OneDrive/Desktop/pp1/NIDS-Reliability/CROSS_DATASET_REPORT.md).
+
+---
+
+## 9. Reproducibility & Fresh Checkout Guide
+
+To replicate or regenerate all cross-dataset comparison tables and figures from a fresh checkout:
+
+### Required Result File Placement
+The cross-dataset synthesis script (`src/cross_dataset_analysis.py` or `run_cross_analysis.py`) requires the following directory structure:
+```
+results/
+├── cicids2017/
+│   ├── final_condition_metrics.csv       # Validated Part A 5-seed metrics
+│   ├── repeated_seed_summary.csv        # 5-seed statistics and 95% CIs
+│   ├── degradation_macro_f1.csv         # Relative degradation records
+│   └── interaction_results.csv          # Interaction calculations
+├── unsw_nb15/
+│   ├── final_condition_metrics.csv       # Validated Part B 5-seed metrics
+│   ├── repeated_seed_summary.csv        # 5-seed statistics and 95% CIs
+│   ├── degradation_macro_f1.csv         # Relative degradation records
+│   ├── interaction_results.csv          # Interaction calculations
+│   └── duplicate_overlap_audit.json     # Official partition duplicate audit
+└── cross_dataset/                       # Target output directory (auto-created)
+```
+
+All required input summary tables are committed and tracked under `results/cicids2017/` and `results/unsw_nb15/`. No multi-gigabyte raw pcap or flow CSV downloads are needed to run cross-dataset analysis.
+
+### Master Execution Command
+```bash
+python run_cross_analysis.py
+```
+This executes dynamic loading, verifies all values against source summaries, and regenerates:
+- `comparison_metrics.csv`
+- `comparison_degradation.csv`
+- `comparison_interaction.csv`
+- `comparison_class_dynamics.csv`
+- Figures `figure_cross_1` through `figure_cross_4` in `results/cross_dataset/`
+
