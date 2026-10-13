@@ -1,0 +1,28 @@
+{
+  "dataset_source": "local:/content/CICIDS2017_timestamped",
+  "temporal_provenance_mode": "capture_day_file_order",
+  "timestamp_column": "Timestamp",
+  "rows_final": 2089924,
+  "numeric_features": 87,
+  "classes": 27,
+  "raw_feature_nan_cells": 0,
+  "raw_feature_inf_cells": 0,
+  "quick_validation": false,
+  "paper_mode": true,
+  "fast_train_samples": 100000,
+  "seeds": [
+    42,
+    52,
+    62,
+    72,
+    82
+  ],
+  "missingness_levels": [
+    0.0,
+    0.1,
+    0.2
+  ],
+  "condition_count_expected": 6,
+  "experiments_completed": true,
+  "validation_status": "PASS"
+}

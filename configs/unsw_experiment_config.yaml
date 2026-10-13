@@ -4,7 +4,7 @@ seed_set: [42, 52, 62, 72, 82]
 models: [LogisticRegression, RandomForest, XGBoost]
 tasks: [binary, multiclass]
 missingness_rates: [0.10, 0.20]
-temporal_provenance: validated_stime_or_partition_provenance
+temporal_provenance: official_session_holdout
 paper_mode: true
 quick_validation: false
 fast_train_samples: 100000

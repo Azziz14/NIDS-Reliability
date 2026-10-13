@@ -1,0 +1,32 @@
+[
+  {
+    "day": "Monday",
+    "rank": 0,
+    "rows": 529918,
+    "timestamp_validity": 0.48
+  },
+  {
+    "day": "Tuesday",
+    "rank": 1,
+    "rows": 445909,
+    "timestamp_validity": 0.51
+  },
+  {
+    "day": "Wednesday",
+    "rank": 2,
+    "rows": 692703,
+    "timestamp_validity": 0.44
+  },
+  {
+    "day": "Thursday",
+    "rank": 3,
+    "rows": 458968,
+    "timestamp_validity": 0.42
+  },
+  {
+    "day": "Friday",
+    "rank": 4,
+    "rows": 546201,
+    "timestamp_validity": 0.52
+  }
+]

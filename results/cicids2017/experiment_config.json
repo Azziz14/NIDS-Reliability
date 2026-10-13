@@ -1,0 +1,35 @@
+{
+  "dataset_source": "local:/content/CICIDS2017_timestamped",
+  "temporal_provenance": "capture_day_file_order",
+  "quick_validation": false,
+  "paper_mode": true,
+  "seeds": [
+    42,
+    52,
+    62,
+    72,
+    82
+  ],
+  "models": [
+    "Logistic Regression",
+    "Random Forest",
+    "XGBoost"
+  ],
+  "tasks": [
+    "binary",
+    "multiclass"
+  ],
+  "missingness_levels": [
+    0.0,
+    0.1,
+    0.2
+  ],
+  "conditions": [
+    "Reference",
+    "Reference+10% Missingness",
+    "Reference+20% Missingness",
+    "Temporal",
+    "Temporal+10% Missingness",
+    "Temporal+20% Missingness"
+  ]
+}

@@ -34,7 +34,7 @@ target_dir = ROOT / "results"
 if len(sys.argv) > 1 and sys.argv[1].lower() in ["unsw", "unsw_nb15", "--unsw"]:
     target_dir = ROOT / "results" / "unsw_nb15"
 elif len(sys.argv) > 1 and sys.argv[1].lower() in ["cicids", "cicids2017", "--cicids"]:
-    target_dir = ROOT / "results"
+    target_dir = ROOT / "results" / "cicids2017" if (ROOT / "results" / "cicids2017").exists() else ROOT / "results"
 elif (ROOT / "results" / "unsw_nb15").exists() and not (ROOT / "results" / "validation.json").exists():
     target_dir = ROOT / "results" / "unsw_nb15"
 

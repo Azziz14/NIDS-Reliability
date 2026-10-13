@@ -1,7 +1,7 @@
 {
   "dataset": "UNSW-NB15",
   "dataset_source": "local:C:\\Users\\ashis\\OneDrive\\Desktop\\pp1\\NIDS-Reliability\\data\\unsw_nb15",
-  "temporal_provenance": "benchmark_session_partition",
+  "temporal_provenance": "official_session_holdout",
   "quick_validation": false,
   "paper_mode": true,
   "seeds": [
@@ -75,5 +75,6 @@
     "convergence_warnings_intercepted": true,
     "max_iter": 300,
     "note": "n_iter alone is not claimed as mathematical proof of global optimality"
-  }
+  },
+  "duplicate_handling_policy": "Preserve official benchmark rows; exact 5.16% cross-partition overlap quantified in duplicate_overlap_audit.json"
 }

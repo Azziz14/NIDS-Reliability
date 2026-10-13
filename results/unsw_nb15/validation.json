@@ -1,8 +1,8 @@
 {
   "dataset": "UNSW-NB15",
   "dataset_source": "local:C:\\Users\\ashis\\OneDrive\\Desktop\\pp1\\NIDS-Reliability\\data\\unsw_nb15",
-  "provenance_mode": "benchmark_session_partition",
-  "temporal_order_description": "ACCS discrete capture session provenance (training-set vs. testing-set)",
+  "provenance_mode": "official_session_holdout",
+  "temporal_order_description": "Official ACCS discrete capture session holdout (Session 0 train vs. Session 1 test)",
   "total_unified_rows": 257673,
   "raw_train_partition_rows": 175341,
   "raw_test_partition_rows": 82332,
@@ -61,7 +61,31 @@
   "experiments_completed": true,
   "lr_convergence_audit": {
     "transparency_note": "Terminating below max_iter indicates stopping tolerance (1e-3) was satisfied; reaching max_iter indicates iteration boundary was encountered. Iteration count alone is not claimed as mathematical proof of global optimality.",
-    "sample_records": [
+    "coverage_summary": {
+      "total_records_logged": 60,
+      "seeds_evaluated": [
+        42,
+        52,
+        62,
+        72,
+        82
+      ],
+      "tasks_evaluated": [
+        "binary",
+        "multiclass"
+      ],
+      "all_converged_without_warning": true,
+      "convergence_warnings_count": 0,
+      "multiclass_n_iter_range": [
+        74,
+        86
+      ],
+      "binary_n_iter_range": [
+        34,
+        43
+      ]
+    },
+    "records_all_seeds_and_tasks": [
       {
         "task": "multiclass",
         "condition": "Reference",
@@ -115,9 +139,505 @@
         "max_iter": 300,
         "converged_without_warning": true,
         "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference",
+        "seed": 42,
+        "n_iter": 39,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference+10% Missingness",
+        "seed": 42,
+        "n_iter": 39,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference+20% Missingness",
+        "seed": 42,
+        "n_iter": 39,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal",
+        "seed": 42,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal+10% Missingness",
+        "seed": 42,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal+20% Missingness",
+        "seed": 42,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference",
+        "seed": 52,
+        "n_iter": 77,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference+10% Missingness",
+        "seed": 52,
+        "n_iter": 77,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference+20% Missingness",
+        "seed": 52,
+        "n_iter": 77,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal",
+        "seed": 52,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal+10% Missingness",
+        "seed": 52,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal+20% Missingness",
+        "seed": 52,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference",
+        "seed": 52,
+        "n_iter": 34,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference+10% Missingness",
+        "seed": 52,
+        "n_iter": 34,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference+20% Missingness",
+        "seed": 52,
+        "n_iter": 34,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal",
+        "seed": 52,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal+10% Missingness",
+        "seed": 52,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal+20% Missingness",
+        "seed": 52,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference",
+        "seed": 62,
+        "n_iter": 85,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference+10% Missingness",
+        "seed": 62,
+        "n_iter": 85,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference+20% Missingness",
+        "seed": 62,
+        "n_iter": 85,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal",
+        "seed": 62,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal+10% Missingness",
+        "seed": 62,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal+20% Missingness",
+        "seed": 62,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference",
+        "seed": 62,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference+10% Missingness",
+        "seed": 62,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference+20% Missingness",
+        "seed": 62,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal",
+        "seed": 62,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal+10% Missingness",
+        "seed": 62,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal+20% Missingness",
+        "seed": 62,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference",
+        "seed": 72,
+        "n_iter": 86,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference+10% Missingness",
+        "seed": 72,
+        "n_iter": 86,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference+20% Missingness",
+        "seed": 72,
+        "n_iter": 86,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal",
+        "seed": 72,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal+10% Missingness",
+        "seed": 72,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal+20% Missingness",
+        "seed": 72,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference",
+        "seed": 72,
+        "n_iter": 43,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference+10% Missingness",
+        "seed": 72,
+        "n_iter": 43,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference+20% Missingness",
+        "seed": 72,
+        "n_iter": 43,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal",
+        "seed": 72,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal+10% Missingness",
+        "seed": 72,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal+20% Missingness",
+        "seed": 72,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference",
+        "seed": 82,
+        "n_iter": 74,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference+10% Missingness",
+        "seed": 82,
+        "n_iter": 74,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference+20% Missingness",
+        "seed": 82,
+        "n_iter": 74,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal",
+        "seed": 82,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal+10% Missingness",
+        "seed": 82,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal+20% Missingness",
+        "seed": 82,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference",
+        "seed": 82,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference+10% Missingness",
+        "seed": 82,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Reference+20% Missingness",
+        "seed": 82,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal",
+        "seed": 82,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal+10% Missingness",
+        "seed": 82,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "binary",
+        "condition": "Temporal+20% Missingness",
+        "seed": 82,
+        "n_iter": 36,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
       }
     ]
   },
   "scientific_non_equivalence_note": "UNSW-NB15 contains all 10 target classes across both training and testing partitions, measuring true feature and distribution drift. This differs fundamentally from CICIDS2017, where 22 attack classes were absent on Friday, creating a structural Macro-F1 bound near 0.037.",
-  "validation_status": "PASS"
+  "validation_status": "PASS",
+  "duplicate_overlap_summary": {
+    "within_train_duplicates_no_id": 67601,
+    "within_test_duplicates_no_id": 26387,
+    "cross_partition_exact_overlap_count": 4247,
+    "cross_partition_exact_overlap_pct": 5.158383131710635,
+    "cross_partition_feature_collision_count": 8541,
+    "cross_partition_feature_collision_pct": 10.373852208132925,
+    "cross_partition_label_conflict_count": 4294
+  },
+  "leakage_qualification_policy": "Strict distinction between leakage forms: (1) Preprocessor & estimator leakage: ZERO (eliminated via train-only fitting). (2) Temporal sequence leakage: ZERO (eliminated via discrete session holdout). (3) Flow duplicate contamination: Explicitly quantified at 5.16% cross-partition overlap. The reference 80/20 split preserves benchmark-level flow duplication (~36.8%), which enables in-distribution memorization. The temporal holdout directly stresses this memorization."
 }

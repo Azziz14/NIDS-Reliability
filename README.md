@@ -84,14 +84,15 @@ Outputs are exported to `results/unsw_nb15/`:
 - `interaction_results.csv`: Combined stress non-additive interaction terms.
 - `attack_level_recall.csv`: Per-attack detection recall tracking across all 10 classes.
 - `figure1_*.png` to `figure6_*.png`: Publication charts.
-- `validation.json`: Audit log confirming zero leakage, condition completeness, and status `PASS`.
+- `duplicate_overlap_audit.json`: Quantifies cross-partition duplicate flow overlap (5.16% exact overlap) and documents handling policy.
+- `validation.json`: Audit log confirming preprocessor zero-leakage, condition completeness, full 10-fit LR convergence diagnostics, and status `PASS`.
 
 ### C. Running Cross-Dataset Analysis
 To generate side-by-side comparison tables and cross-dataset figures:
 ```bash
 python run_cross_analysis.py
 ```
-Outputs are exported to `results/cross_dataset/`:
+Outputs are dynamically generated and verified against source summaries (`results/cicids2017/` and `results/unsw_nb15/`), exporting to `results/cross_dataset/`:
 - `comparison_metrics.csv`
 - `comparison_degradation.csv`
 - `comparison_interaction.csv`

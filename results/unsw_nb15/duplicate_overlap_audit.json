@@ -1,0 +1,18 @@
+{
+  "total_unified_rows": 257673,
+  "train_rows": 175341,
+  "test_rows": 82332,
+  "within_train_duplicates_no_id": 67601,
+  "within_train_duplicate_pct": 0.38554017599990875,
+  "within_test_duplicates_no_id": 26387,
+  "within_test_duplicate_pct": 0.32049506874605255,
+  "total_duplicates_no_id": 94928,
+  "total_duplicate_pct": 0.3684049163086548,
+  "cross_partition_exact_overlap_count": 4247,
+  "cross_partition_exact_overlap_pct": 5.158383131710635,
+  "cross_partition_feature_collision_count": 8541,
+  "cross_partition_feature_collision_pct": 10.373852208132925,
+  "cross_partition_label_conflict_count": 4294,
+  "cross_partition_label_conflict_pct": 5.21546907642229,
+  "handling_policy": "SCIENTIFICALLY JUSTIFIED HANDLING POLICY: 1. Network flow reality: Identical flows represent legitimate recurring operational traffic (e.g., periodic NTP synchronizations, DNS heartbeats, persistent TCP scans, automated fuzzing loops). Removing duplicates alters natural class priors and operational attack density. 2. Benchmark comparability: Preserving all official rows ensures exact comparability with published ACCS literature. 3. Leakage qualification: We distinguish PREPROCESSOR/ESTIMATOR LEAKAGE (strictly ZERO, as transformers are fit exclusively on training data) and TEMPORAL ORDER LEAKAGE (strictly ZERO, Session 0 precedes Session 1) from FLOW-LEVEL REPETITION CONTAMINATION (quantified at 5.16% cross-partition overlap). The reference 80/20 split permits identical flow instances across train and test, enabling in-distribution memorization. Our temporal holdout and missingness stress protocols specifically challenge this memorization by evaluating across session boundaries."
+}

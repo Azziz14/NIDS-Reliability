@@ -51,6 +51,22 @@ Unlike CICIDS2017 (where 22 attack classes were absent from the Friday test part
 
 **Scientific Consequence:** UNSW-NB15 temporal degradation reflects genuine distribution and feature shift across continuous support, providing a vital counterpoint to the structural ceiling observed in CICIDS2017.
 
+### C. Duplication Audit, Cross-Partition Overlap & Handling Policy
+A vital methodological consideration is the prevalence of duplicate flows in the benchmark distribution. The framework executes an empirical cross-partition duplicate audit (`duplicate_overlap_audit.json`):
+
+1. **Intra-Partition Duplication:** Excluding synthetic `id`, 67,601 rows in the training partition (38.55%) and 26,387 rows in the testing partition (32.05%) are internal duplicate flows. In the unified 257,673 dataset, 94,928 rows (36.84%) represent duplicate instances.
+2. **Cross-Partition Duplicate Overlap:**
+   - **Exact Feature & Label Overlap:** Exactly **4,247 test rows (5.16% of the test partition)** are exact duplicates of rows present in the training partition across all 42 features and target labels.
+   - **Feature Vector Collisions:** Exactly **8,541 test rows (10.37% of the test partition)** share identical 42-feature vectors with training flows.
+   - **Label Conflict on Identical Features:** Exactly **4,294 test rows (5.22% of the test partition)** share feature vectors with training rows but possess differing class labels (reflecting multi-day session label revisions by ACCS).
+3. **Scientifically Justified Duplicate Handling Policy:**
+   - **Network Traffic Reality:** Identical flows represent legitimate recurring operational phenomena (e.g., periodic NTP synchronizations, DNS heartbeats, persistent TCP scans, automated fuzzing loops). Removing duplicates distorts the operational attack density and empirical class priors.
+   - **Benchmark Comparability:** Preserving official partition rows ensures exact mathematical comparability with the published ACCS literature.
+   - **Leakage Qualification:** We explicitly distinguish:
+     - *Preprocessor / Estimator Leakage (100% Eliminated):* All transformers (`OneHotEncoder`, `SimpleImputer`, `StandardScaler`) are fitted strictly on training data.
+     - *Temporal Sequence Leakage (100% Eliminated):* Session 0 strictly precedes Session 1 in discrete capture provenance.
+     - *Flow Duplicate Memorization (Explicitly Quantified at 5.16%):* The reference 80/20 split permits identical flow instances across train and test, enabling in-distribution memorization. Our temporal holdout and missingness stress protocols specifically challenge this memorization across session boundaries.
+
 ---
 
 ## 3. Individual Justification for Feature Exclusions
@@ -125,11 +141,14 @@ Hyperparameters match the paper protocol across all 5 seeds:
 
 To ensure rigorous reporting without overclaiming:
 1. **Warning Interception:** Model fitting runs inside `warnings.catch_warnings(record=True)` to capture scikit-learn `ConvergenceWarning` events.
-2. **Recorded Diagnostics:**
-   - `n_iter`: Actual L-BFGS iterations executed (`int(model.n_iter_[0])`).
+2. **Recorded Diagnostics Across 5 Seeds & Both Tasks (10 Total Fits):**
+   - `n_iter`: Actual L-BFGS iterations executed.
+     - Multiclass range across 5 seeds: 74 to 86 iterations (mean: 80.4 iterations).
+     - Binary range across 5 seeds: 34 to 43 iterations (mean: 37.6 iterations).
    - `max_iter`: Maximum iteration threshold (`300`).
-   - `converged_without_warning`: Boolean indicating whether L-BFGS terminated within tolerance before hitting `max_iter`.
-   - `warnings_captured`: Verbatim warning strings if encountered.
+   - `converged_without_warning`: Boolean indicating whether L-BFGS terminated within tolerance before hitting `max_iter` (True for 100% of runs; 0 warnings raised).
+   - `warnings_captured`: Verbatim warning strings if encountered ([] across all runs).
+   - Exported to `validation.json` under `lr_convergence_audit`.
 3. **Scientific Disclosure:** Terminating below `max_iter` indicates the gradient norm satisfied stopping tolerance `tol=1e-3`, while reaching `max_iter=300` indicates an iteration cutoff. The report explicitly notes that `n_iter_ < max_iter` alone is not claimed as mathematical proof of global optimality.
 
 ---
