@@ -95,7 +95,14 @@ cicids_col_map = {
     "Macro Precision": "Macro_Precision",
     "Weighted F1": "Weighted_F1"
 }
-df_cicids_metrics = df_cicids_metrics.rename(columns=cicids_col_map)
+for old_c, new_c in cicids_col_map.items():
+    if old_c in df_cicids_metrics.columns:
+        if new_c in df_cicids_metrics.columns:
+            df_cicids_metrics = df_cicids_metrics.drop(columns=[old_c])
+        else:
+            df_cicids_metrics = df_cicids_metrics.rename(columns={old_c: new_c})
+df_cicids_metrics = df_cicids_metrics.loc[:, ~df_cicids_metrics.columns.duplicated()]
+
 
 
 # ============================================================================
