@@ -1,0 +1,12 @@
+[
+  {
+    "file": "UNSW_NB15_training-set.csv",
+    "rows": 175341,
+    "partition_role": "temporal_train_session"
+  },
+  {
+    "file": "UNSW_NB15_testing-set.csv",
+    "rows": 82332,
+    "partition_role": "temporal_test_session"
+  }
+]

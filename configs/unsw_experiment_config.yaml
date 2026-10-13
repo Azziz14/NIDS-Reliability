@@ -1,0 +1,28 @@
+# UNSW-NB15 Reliability Evaluation Configuration
+dataset: UNSW-NB15
+seed_set: [42, 52, 62, 72, 82]
+models: [LogisticRegression, RandomForest, XGBoost]
+tasks: [binary, multiclass]
+missingness_rates: [0.10, 0.20]
+temporal_provenance: validated_stime_or_partition_provenance
+paper_mode: true
+quick_validation: false
+fast_train_samples: 100000
+missingness_injection: test_time_only
+excluded_features:
+  - id
+  - srcip
+  - dstip
+  - sport
+  - dsport
+  - Stime
+  - Ltime
+categorical_features:
+  - proto
+  - service
+  - state
+categorical_encoding: OneHotEncoder_handle_unknown_ignore
+numeric_imputation: SimpleImputer_median_train_only
+scaling: StandardScaler_train_only_for_LR
+ci_level: 0.95
+output_dir: results/unsw_nb15

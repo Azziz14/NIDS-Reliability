@@ -1,0 +1,181 @@
+Task,Condition,Model,Class,Mean_Recall,Std_Recall,N
+multiclass,Reference,Logistic Regression,Analysis,0.030280373831775696,0.008504159376506415,5
+multiclass,Reference,Logistic Regression,Backdoor,0.0034334763948497852,0.0047014811803018555,5
+multiclass,Reference,Logistic Regression,DoS,0.03925405074900642,0.005635482988495017,5
+multiclass,Reference,Logistic Regression,Exploits,0.8534306569343066,0.006496425584716945,5
+multiclass,Reference,Logistic Regression,Fuzzers,0.42693338832749017,0.006137494814820722,5
+multiclass,Reference,Logistic Regression,Generic,0.9745031425174112,0.0015398407927174522,5
+multiclass,Reference,Logistic Regression,Normal,0.9065806451612903,0.001964610587979277,5
+multiclass,Reference,Logistic Regression,Reconnaissance,0.6274481772694782,0.01577134462542864,5
+multiclass,Reference,Logistic Regression,Shellcode,0.0013245033112582781,0.001813650852666113,5
+multiclass,Reference,Logistic Regression,Worms,0.0,0.0,5
+multiclass,Reference,Random Forest,Analysis,0.21682242990654207,0.016024699251852563,5
+multiclass,Reference,Random Forest,Backdoor,0.17768240343347638,0.020937872820000807,5
+multiclass,Reference,Random Forest,DoS,0.6097829409966371,0.012868466744412456,5
+multiclass,Reference,Random Forest,Exploits,0.5366423357664234,0.005058578606872209,5
+multiclass,Reference,Random Forest,Fuzzers,0.8327490204165807,0.00300626515510688,5
+multiclass,Reference,Random Forest,Generic,0.9745201290980126,0.0017187112574187208,5
+multiclass,Reference,Random Forest,Normal,0.7400537634408602,0.003813226763074795,5
+multiclass,Reference,Random Forest,Reconnaissance,0.8235167977126518,0.003893835939947045,5
+multiclass,Reference,Random Forest,Shellcode,0.8887417218543046,0.015282093720813674,5
+multiclass,Reference,Random Forest,Worms,0.6685714285714286,0.051902577498814134,5
+multiclass,Reference,XGBoost,Analysis,0.04747663551401869,0.006816666365910457,5
+multiclass,Reference,XGBoost,Backdoor,0.0776824034334764,0.009402962360603711,5
+multiclass,Reference,XGBoost,DoS,0.04457352491592785,0.011447863364081878,5
+multiclass,Reference,XGBoost,Exploits,0.9286019090398652,0.005229568017324193,5
+multiclass,Reference,XGBoost,Fuzzers,0.47535574345225823,0.01459127486187563,5
+multiclass,Reference,XGBoost,Generic,0.9787158145065398,0.0017224845029205538,5
+multiclass,Reference,XGBoost,Normal,0.9436559139784946,0.003004265284074947,5
+multiclass,Reference,XGBoost,Reconnaissance,0.760614724803431,0.0013933944738826528,5
+multiclass,Reference,XGBoost,Shellcode,0.5821192052980132,0.03153528066439504,5
+multiclass,Reference,XGBoost,Worms,0.33714285714285713,0.061941381110510875,5
+multiclass,Reference+10% Missingness,Logistic Regression,Analysis,0.02130841121495327,0.0059988061816378365,5
+multiclass,Reference+10% Missingness,Logistic Regression,Backdoor,0.003862660944206009,0.003526110885226391,5
+multiclass,Reference+10% Missingness,Logistic Regression,DoS,0.07954753897890554,0.012533274625548667,5
+multiclass,Reference+10% Missingness,Logistic Regression,Exploits,0.7723076923076923,0.004384310473802228,5
+multiclass,Reference+10% Missingness,Logistic Regression,Fuzzers,0.3832542792328315,0.005673334333363383,5
+multiclass,Reference+10% Missingness,Logistic Regression,Generic,0.9616103278410056,0.00285316409584525,5
+multiclass,Reference+10% Missingness,Logistic Regression,Normal,0.8701827956989246,0.004477981485789569,5
+multiclass,Reference+10% Missingness,Logistic Regression,Reconnaissance,0.5116511794138671,0.011844392255074799,5
+multiclass,Reference+10% Missingness,Logistic Regression,Shellcode,0.0006622516556291391,0.0014808397201985363,5
+multiclass,Reference+10% Missingness,Logistic Regression,Worms,0.0,0.0,5
+multiclass,Reference+10% Missingness,Random Forest,Analysis,0.1566355140186916,0.012841543205471154,5
+multiclass,Reference+10% Missingness,Random Forest,Backdoor,0.20944206008583693,0.023536771816645947,5
+multiclass,Reference+10% Missingness,Random Forest,DoS,0.5734637725466218,0.01005478690199031,5
+multiclass,Reference+10% Missingness,Random Forest,Exploits,0.5478944413250982,0.005940578400312917,5
+multiclass,Reference+10% Missingness,Random Forest,Fuzzers,0.8129923695607342,0.0035040573684379872,5
+multiclass,Reference+10% Missingness,Random Forest,Generic,0.9735858671649396,0.0019534567691523604,5
+multiclass,Reference+10% Missingness,Random Forest,Normal,0.7562688172043011,0.004979957517483417,5
+multiclass,Reference+10% Missingness,Random Forest,Reconnaissance,0.793566833452466,0.0054119567495259395,5
+multiclass,Reference+10% Missingness,Random Forest,Shellcode,0.8198675496688741,0.024845472161992167,5
+multiclass,Reference+10% Missingness,Random Forest,Worms,0.3485714285714286,0.07928249671720919,5
+multiclass,Reference+10% Missingness,XGBoost,Analysis,0.03962616822429906,0.0030713414439542015,5
+multiclass,Reference+10% Missingness,XGBoost,Backdoor,0.057939914163090134,0.006256386153267491,5
+multiclass,Reference+10% Missingness,XGBoost,DoS,0.03442372363191685,0.008318084551631725,5
+multiclass,Reference+10% Missingness,XGBoost,Exploits,0.9121392476137002,0.0031126586245254478,5
+multiclass,Reference+10% Missingness,XGBoost,Fuzzers,0.4788203753351207,0.010875867957667302,5
+multiclass,Reference+10% Missingness,XGBoost,Generic,0.9761168676745371,0.0015584666987208471,5
+multiclass,Reference+10% Missingness,XGBoost,Normal,0.9114731182795699,0.009476605243537523,5
+multiclass,Reference+10% Missingness,XGBoost,Reconnaissance,0.7556826304503217,0.005892193708663651,5
+multiclass,Reference+10% Missingness,XGBoost,Shellcode,0.4774834437086093,0.036076003178714816,5
+multiclass,Reference+10% Missingness,XGBoost,Worms,0.21714285714285714,0.04780914437337574,5
+multiclass,Reference+20% Missingness,Logistic Regression,Analysis,0.017196261682242992,0.0065286912884384984,5
+multiclass,Reference+20% Missingness,Logistic Regression,Backdoor,0.0030042918454935624,0.0032544529802796354,5
+multiclass,Reference+20% Missingness,Logistic Regression,DoS,0.10088657902782024,0.02047961022160541,5
+multiclass,Reference+20% Missingness,Logistic Regression,Exploits,0.7136889387984279,0.00242622738251431,5
+multiclass,Reference+20% Missingness,Logistic Regression,Fuzzers,0.3381728191379666,0.002441865970817194,5
+multiclass,Reference+20% Missingness,Logistic Regression,Generic,0.9436724987260063,0.002174016885446063,5
+multiclass,Reference+20% Missingness,Logistic Regression,Normal,0.846989247311828,0.002768686707437409,5
+multiclass,Reference+20% Missingness,Logistic Regression,Reconnaissance,0.4076483202287348,0.01834187318858293,5
+multiclass,Reference+20% Missingness,Logistic Regression,Shellcode,0.0006622516556291391,0.0014808397201985363,5
+multiclass,Reference+20% Missingness,Logistic Regression,Worms,0.0,0.0,5
+multiclass,Reference+20% Missingness,Random Forest,Analysis,0.09196261682242991,0.013504592050982017,5
+multiclass,Reference+20% Missingness,Random Forest,Backdoor,0.2274678111587983,0.023605150214592262,5
+multiclass,Reference+20% Missingness,Random Forest,DoS,0.5483338428615102,0.028553533514727582,5
+multiclass,Reference+20% Missingness,Random Forest,Exploits,0.5564289724873667,0.005852358998672872,5
+multiclass,Reference+20% Missingness,Random Forest,Fuzzers,0.7501752938750258,0.004828997035914255,5
+multiclass,Reference+20% Missingness,Random Forest,Generic,0.9696449804654323,0.0031793733495459418,5
+multiclass,Reference+20% Missingness,Random Forest,Normal,0.7778817204301076,0.00752655529246087,5
+multiclass,Reference+20% Missingness,Random Forest,Reconnaissance,0.7155825589706933,0.011851938858105536,5
+multiclass,Reference+20% Missingness,Random Forest,Shellcode,0.7,0.030760858708592277,5
+multiclass,Reference+20% Missingness,Random Forest,Worms,0.14285714285714285,0.05345224838248489,5
+multiclass,Reference+20% Missingness,XGBoost,Analysis,0.029158878504672896,0.003875970346416396,5
+multiclass,Reference+20% Missingness,XGBoost,Backdoor,0.04592274678111588,0.007526042024356301,5
+multiclass,Reference+20% Missingness,XGBoost,DoS,0.02653622745337817,0.007647201492569143,5
+multiclass,Reference+20% Missingness,XGBoost,Exploits,0.8845143177989894,0.01144118554658265,5
+multiclass,Reference+20% Missingness,XGBoost,Fuzzers,0.4751495153639926,0.01909420420129217,5
+multiclass,Reference+20% Missingness,XGBoost,Generic,0.9653134024120945,0.0024737209209085313,5
+multiclass,Reference+20% Missingness,XGBoost,Normal,0.8711612903225806,0.016236719361169164,5
+multiclass,Reference+20% Missingness,XGBoost,Reconnaissance,0.737240886347391,0.01115517409251781,5
+multiclass,Reference+20% Missingness,XGBoost,Shellcode,0.37350993377483444,0.038430572562792434,5
+multiclass,Reference+20% Missingness,XGBoost,Worms,0.09714285714285713,0.032576440717118224,5
+multiclass,Temporal,Logistic Regression,Analysis,0.0,0.0,5
+multiclass,Temporal,Logistic Regression,Backdoor,0.0,0.0,5
+multiclass,Temporal,Logistic Regression,DoS,0.009293225727561751,0.0,5
+multiclass,Temporal,Logistic Regression,Exploits,0.782608695652174,0.0,5
+multiclass,Temporal,Logistic Regression,Fuzzers,0.7551963048498845,0.0,5
+multiclass,Temporal,Logistic Regression,Generic,0.9629060463144509,0.0,5
+multiclass,Temporal,Logistic Regression,Normal,0.6342972972972973,0.0,5
+multiclass,Temporal,Logistic Regression,Reconnaissance,0.6644736842105263,0.0,5
+multiclass,Temporal,Logistic Regression,Shellcode,0.0,0.0,5
+multiclass,Temporal,Logistic Regression,Worms,0.0,0.0,5
+multiclass,Temporal,Random Forest,Analysis,0.03338257016248154,0.011374666651804111,5
+multiclass,Temporal,Random Forest,Backdoor,0.3584905660377359,0.05373739347451302,5
+multiclass,Temporal,Random Forest,DoS,0.2181951577402788,0.015867498397922397,5
+multiclass,Temporal,Random Forest,Exploits,0.6128278835788717,0.001327860716771,5
+multiclass,Temporal,Random Forest,Fuzzers,0.7012867040580666,0.006081710608831166,5
+multiclass,Temporal,Random Forest,Generic,0.9623973292353346,0.00018958766170312186,5
+multiclass,Temporal,Random Forest,Normal,0.5867783783783784,0.0010539500988238433,5
+multiclass,Temporal,Random Forest,Reconnaissance,0.8487414187643021,0.001058738874331916,5
+multiclass,Temporal,Random Forest,Shellcode,0.9105820105820106,0.011741979376281552,5
+multiclass,Temporal,Random Forest,Worms,0.5136363636363637,0.034467615654779786,5
+multiclass,Temporal,XGBoost,Analysis,0.0005908419497784343,0.001321162763663096,5
+multiclass,Temporal,XGBoost,Backdoor,0.059005145797598635,0.007437215570730291,5
+multiclass,Temporal,XGBoost,DoS,0.03394472976277819,0.0012397937740901506,5
+multiclass,Temporal,XGBoost,Exploits,0.9290873158462091,0.005839920879526388,5
+multiclass,Temporal,XGBoost,Fuzzers,0.6022434839986803,0.016942334260011484,5
+multiclass,Temporal,XGBoost,Generic,0.9654072386201049,0.00019613963778622874,5
+multiclass,Temporal,XGBoost,Normal,0.755572972972973,0.002827807240794253,5
+multiclass,Temporal,XGBoost,Reconnaissance,0.8100686498855836,0.0044081907915968195,5
+multiclass,Temporal,XGBoost,Shellcode,0.6502645502645503,0.017884067493286297,5
+multiclass,Temporal,XGBoost,Worms,0.16363636363636364,0.024896479886598467,5
+multiclass,Temporal+10% Missingness,Logistic Regression,Analysis,0.0,0.0,5
+multiclass,Temporal+10% Missingness,Logistic Regression,Backdoor,0.0,0.0,5
+multiclass,Temporal+10% Missingness,Logistic Regression,DoS,0.04490095377842993,0.00394187150079898,5
+multiclass,Temporal+10% Missingness,Logistic Regression,Exploits,0.7198526769673015,0.0012211746653227934,5
+multiclass,Temporal+10% Missingness,Logistic Regression,Fuzzers,0.6524249422632795,0.0032325829663915006,5
+multiclass,Temporal+10% Missingness,Logistic Regression,Generic,0.945461289809761,0.0007978676292773316,5
+multiclass,Temporal+10% Missingness,Logistic Regression,Normal,0.6510108108108108,0.001422017209373546,5
+multiclass,Temporal+10% Missingness,Logistic Regression,Reconnaissance,0.5504576659038902,0.005087192503464118,5
+multiclass,Temporal+10% Missingness,Logistic Regression,Shellcode,0.0,0.0,5
+multiclass,Temporal+10% Missingness,Logistic Regression,Worms,0.0,0.0,5
+multiclass,Temporal+10% Missingness,Random Forest,Analysis,0.02776957163958641,0.007560699493098807,5
+multiclass,Temporal+10% Missingness,Random Forest,Backdoor,0.2782161234991424,0.0320759303220714,5
+multiclass,Temporal+10% Missingness,Random Forest,DoS,0.2707263389581805,0.014151681349160488,5
+multiclass,Temporal+10% Missingness,Random Forest,Exploits,0.6215594681997845,0.0007969189765079702,5
+multiclass,Temporal+10% Missingness,Random Forest,Fuzzers,0.6675024744308808,0.004318415578132143,5
+multiclass,Temporal+10% Missingness,Random Forest,Generic,0.9605108367336124,0.0007103610228790363,5
+multiclass,Temporal+10% Missingness,Random Forest,Normal,0.6006324324324324,0.002162635083414996,5
+multiclass,Temporal+10% Missingness,Random Forest,Reconnaissance,0.8063501144164761,0.010096889356248761,5
+multiclass,Temporal+10% Missingness,Random Forest,Shellcode,0.8529100529100528,0.013437486877460604,5
+multiclass,Temporal+10% Missingness,Random Forest,Worms,0.22272727272727275,0.04927155315608819,5
+multiclass,Temporal+10% Missingness,XGBoost,Analysis,0.00029542097488921716,0.000660581381831548,5
+multiclass,Temporal+10% Missingness,XGBoost,Backdoor,0.043910806174957115,0.0074372155707302925,5
+multiclass,Temporal+10% Missingness,XGBoost,DoS,0.029493763756419662,0.001368217239491256,5
+multiclass,Temporal+10% Missingness,XGBoost,Exploits,0.9187208048868127,0.0035145671337463353,5
+multiclass,Temporal+10% Missingness,XGBoost,Fuzzers,0.5378422962718574,0.019557085203558998,5
+multiclass,Temporal+10% Missingness,XGBoost,Generic,0.9564940914630915,0.0029041490604408003,5
+multiclass,Temporal+10% Missingness,XGBoost,Normal,0.7611081081081081,0.004011078522427057,5
+multiclass,Temporal+10% Missingness,XGBoost,Reconnaissance,0.7980549199084669,0.0030807578988183582,5
+multiclass,Temporal+10% Missingness,XGBoost,Shellcode,0.5354497354497354,0.02961309062212853,5
+multiclass,Temporal+10% Missingness,XGBoost,Worms,0.08181818181818182,0.03446761565477978,5
+multiclass,Temporal+20% Missingness,Logistic Regression,Analysis,0.00029542097488921716,0.000660581381831548,5
+multiclass,Temporal+20% Missingness,Logistic Regression,Backdoor,0.0,0.0,5
+multiclass,Temporal+20% Missingness,Logistic Regression,DoS,0.06338958180484225,0.00406806111738987,5
+multiclass,Temporal+20% Missingness,Logistic Regression,Exploits,0.6672655407833273,0.002431255587984962,5
+multiclass,Temporal+20% Missingness,Logistic Regression,Fuzzers,0.5529198284394589,0.0036727682668687774,5
+multiclass,Temporal+20% Missingness,Logistic Regression,Generic,0.9236182502252133,0.0011424524807979782,5
+multiclass,Temporal+20% Missingness,Logistic Regression,Normal,0.6692810810810811,0.0017426250737186569,5
+multiclass,Temporal+20% Missingness,Logistic Regression,Reconnaissance,0.4443935926773455,0.0016506336437361311,5
+multiclass,Temporal+20% Missingness,Logistic Regression,Shellcode,0.0,0.0,5
+multiclass,Temporal+20% Missingness,Logistic Regression,Worms,0.0,0.0,5
+multiclass,Temporal+20% Missingness,Random Forest,Analysis,0.01949778434268833,0.004831736258137704,5
+multiclass,Temporal+20% Missingness,Random Forest,Backdoor,0.21200686106346484,0.0368802105647609,5
+multiclass,Temporal+20% Missingness,Random Forest,DoS,0.33651259476644657,0.009622066800149657,5
+multiclass,Temporal+20% Missingness,Random Forest,Exploits,0.6255839022637442,0.0024162733841740164,5
+multiclass,Temporal+20% Missingness,Random Forest,Fuzzers,0.582645991421973,0.0033605326274271908,5
+multiclass,Temporal+20% Missingness,Random Forest,Generic,0.9513539293095226,0.003485567033543964,5
+multiclass,Temporal+20% Missingness,Random Forest,Normal,0.6422216216216217,0.004497276182382873,5
+multiclass,Temporal+20% Missingness,Random Forest,Reconnaissance,0.7163615560640733,0.014054784571491915,5
+multiclass,Temporal+20% Missingness,Random Forest,Shellcode,0.7592592592592593,0.029988846689827067,5
+multiclass,Temporal+20% Missingness,Random Forest,Worms,0.07727272727272727,0.04128614119223852,5
+multiclass,Temporal+20% Missingness,XGBoost,Analysis,0.0011816838995568687,0.0019259091300450957,5
+multiclass,Temporal+20% Missingness,XGBoost,Backdoor,0.03361921097770154,0.00430528315540691,5
+multiclass,Temporal+20% Missingness,XGBoost,DoS,0.023526534605037907,0.0020417345526771145,5
+multiclass,Temporal+20% Missingness,XGBoost,Exploits,0.9002694933524973,0.004261726821469067,5
+multiclass,Temporal+20% Missingness,XGBoost,Fuzzers,0.47360607060376114,0.02187442928366044,5
+multiclass,Temporal+20% Missingness,XGBoost,Generic,0.9320650733930369,0.008825647376915654,5
+multiclass,Temporal+20% Missingness,XGBoost,Normal,0.7613351351351352,0.008503975781396432,5
+multiclass,Temporal+20% Missingness,XGBoost,Reconnaissance,0.7775171624713959,0.0047923638371989265,5
+multiclass,Temporal+20% Missingness,XGBoost,Shellcode,0.4121693121693122,0.03609923831410727,5
+multiclass,Temporal+20% Missingness,XGBoost,Worms,0.03636363636363636,0.038030001206094344,5

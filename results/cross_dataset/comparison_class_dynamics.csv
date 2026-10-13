@@ -1,0 +1,8 @@
+Dimension,CICIDS2017,UNSW-NB15,Scientific Significance
+Total Evaluated Rows,"2,089,924 (5 daily CSV captures)","257,673 (175k train / 82k test)",Both represent large-scale synthetic intrusion benchmarks; CICIDS2017 has 8x row volume.
+Retained Feature Count,87 numeric features,42 features (39 numeric + 3 categorical),UNSW-NB15 incorporates connection state and protocol categories requiring one-hot encoding.
+Target Classes (Multiclass),27 classes (BENIGN + 26 attacks),10 classes (Normal + 9 attacks),CICIDS2017 has severe extreme minority attacks; UNSW-NB15 attacks have higher individual support.
+Temporal Provenance Mode,Capture-day rank (Mon-Thu vs Fri),ACCS session partition (Session 0 vs 1),Neither uses flow duration as fake timestamp; both respect genuine capture boundaries.
+Temporal Class Dynamics,22 attack classes absent from Friday; 4 unseen,All 10 classes present in both partitions,CICIDS2017 temporal degradation is structural ceiling (~0.037); UNSW-NB15 is genuine feature drift.
+Interaction Profile (Multiclass),Sub-additive saturation (-0.058 to -0.229),Continuous non-floor interaction,Extreme primary degradation in CICIDS2017 leaves little room for additive missingness damage.
+Model Robustness Hierarchy,RF (~0.93) > XGB (~0.91) >> LR (~0.68),XGB (~0.81) >= RF (~0.76) > LR (~0.77),Tree-based architectures consistently dominate linear models under both reference and stress states.

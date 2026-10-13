@@ -1,0 +1,79 @@
+{
+  "dataset": "UNSW-NB15",
+  "dataset_source": "local:C:\\Users\\ashis\\OneDrive\\Desktop\\pp1\\NIDS-Reliability\\data\\unsw_nb15",
+  "temporal_provenance": "benchmark_session_partition",
+  "quick_validation": false,
+  "paper_mode": true,
+  "seeds": [
+    42,
+    52,
+    62,
+    72,
+    82
+  ],
+  "models": [
+    "Logistic Regression",
+    "Random Forest",
+    "XGBoost"
+  ],
+  "tasks": [
+    "binary",
+    "multiclass"
+  ],
+  "missingness_levels": [
+    0.0,
+    0.1,
+    0.2
+  ],
+  "conditions": [
+    "Reference",
+    "Reference+10% Missingness",
+    "Reference+20% Missingness",
+    "Temporal",
+    "Temporal+10% Missingness",
+    "Temporal+20% Missingness"
+  ],
+  "metrics": [
+    "Accuracy",
+    "Macro Precision",
+    "Macro Recall",
+    "Macro F1",
+    "Weighted F1",
+    "FPR"
+  ],
+  "degradation_formula": "(M_reference - M_condition) / M_reference for higher-is-better metrics; (M_condition - M_reference) / M_reference for FPR",
+  "interaction_formula": "D_combined - (D_temporal + D_missingness)",
+  "confidence_interval": "95% Student-t CI across seeds (df=4)",
+  "preprocessing": {
+    "categorical": "OneHotEncoder(handle_unknown='ignore') fit on train partition only",
+    "numeric_imputation": "SimpleImputer(strategy='median') fit on train partition only",
+    "scaling": "StandardScaler fit on train partition only for Logistic Regression",
+    "missingness_protocol": "Test-time Bernoulli missingness masks (10%, 20%) applied to evaluation matrix only; transformed via train-fitted imputer"
+  },
+  "feature_policy": {
+    "excluded_features": [
+      "id",
+      "srcip",
+      "dstip",
+      "sport",
+      "dsport",
+      "stime",
+      "ltime"
+    ],
+    "exclusion_reasons": {
+      "id": "Synthetic monotonic row index; perfect shortcut leakage if retained.",
+      "srcip": "Spatial memorization leakage; models split on specific testbed IP identities.",
+      "dstip": "Spatial memorization leakage; models split on specific target lab VM addresses.",
+      "sport": "Ephemeral port noise; client-side OS dynamic socket allocator artifact (high cardinality, zero intrusion semantics).",
+      "dsport": "Target server port bias + continuous integer fallacy on nominal values. Note: Behavioral port context is fully retained via 6 engineered features: service, ct_srv_src, ct_srv_dst, ct_src_dport_ltm, ct_dst_sport_ltm, and is_sm_ips_ports.",
+      "stime": "Temporal metadata; reserved strictly for chronological ordering / session partitioning, excluded from feature matrix X.",
+      "ltime": "Temporal metadata; reserved strictly for chronological ordering, excluded from feature matrix X."
+    }
+  },
+  "lr_convergence_policy": {
+    "transparent_logging": true,
+    "convergence_warnings_intercepted": true,
+    "max_iter": 300,
+    "note": "n_iter alone is not claimed as mathematical proof of global optimality"
+  }
+}

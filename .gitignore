@@ -1,5 +1,6 @@
 # Data
 *.csv
+!results/**/*.csv
 *.parquet
 *.feather
 data/

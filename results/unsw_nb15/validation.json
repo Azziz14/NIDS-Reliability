@@ -1,0 +1,123 @@
+{
+  "dataset": "UNSW-NB15",
+  "dataset_source": "local:C:\\Users\\ashis\\OneDrive\\Desktop\\pp1\\NIDS-Reliability\\data\\unsw_nb15",
+  "provenance_mode": "benchmark_session_partition",
+  "temporal_order_description": "ACCS discrete capture session provenance (training-set vs. testing-set)",
+  "total_unified_rows": 257673,
+  "raw_train_partition_rows": 175341,
+  "raw_test_partition_rows": 82332,
+  "feature_exclusions": [
+    "id",
+    "srcip",
+    "dstip",
+    "sport",
+    "dsport",
+    "stime",
+    "ltime"
+  ],
+  "exclusion_rationales": {
+    "id": "Synthetic monotonic row index; perfect shortcut leakage if retained.",
+    "srcip": "Spatial memorization leakage; models split on specific testbed IP identities.",
+    "dstip": "Spatial memorization leakage; models split on specific target lab VM addresses.",
+    "sport": "Ephemeral port noise; client-side OS dynamic socket allocator artifact (high cardinality, zero intrusion semantics).",
+    "dsport": "Target server port bias + continuous integer fallacy on nominal values. Note: Behavioral port context is fully retained via 6 engineered features: service, ct_srv_src, ct_srv_dst, ct_src_dport_ltm, ct_dst_sport_ltm, and is_sm_ips_ports.",
+    "stime": "Temporal metadata; reserved strictly for chronological ordering / session partitioning, excluded from feature matrix X.",
+    "ltime": "Temporal metadata; reserved strictly for chronological ordering, excluded from feature matrix X."
+  },
+  "categorical_features": [
+    "proto",
+    "service",
+    "state"
+  ],
+  "numeric_features_count": 39,
+  "classes": [
+    "Analysis",
+    "Backdoor",
+    "DoS",
+    "Exploits",
+    "Fuzzers",
+    "Generic",
+    "Normal",
+    "Reconnaissance",
+    "Shellcode",
+    "Worms"
+  ],
+  "class_count": 10,
+  "quick_validation": false,
+  "paper_mode": true,
+  "seeds": [
+    42,
+    52,
+    62,
+    72,
+    82
+  ],
+  "missingness_levels": [
+    0.0,
+    0.1,
+    0.2
+  ],
+  "condition_count": 6,
+  "experiments_completed": true,
+  "lr_convergence_audit": {
+    "transparency_note": "Terminating below max_iter indicates stopping tolerance (1e-3) was satisfied; reaching max_iter indicates iteration boundary was encountered. Iteration count alone is not claimed as mathematical proof of global optimality.",
+    "sample_records": [
+      {
+        "task": "multiclass",
+        "condition": "Reference",
+        "seed": 42,
+        "n_iter": 80,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference+10% Missingness",
+        "seed": 42,
+        "n_iter": 80,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Reference+20% Missingness",
+        "seed": 42,
+        "n_iter": 80,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal",
+        "seed": 42,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal+10% Missingness",
+        "seed": 42,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      },
+      {
+        "task": "multiclass",
+        "condition": "Temporal+20% Missingness",
+        "seed": 42,
+        "n_iter": 76,
+        "max_iter": 300,
+        "converged_without_warning": true,
+        "warnings_captured": []
+      }
+    ]
+  },
+  "scientific_non_equivalence_note": "UNSW-NB15 contains all 10 target classes across both training and testing partitions, measuring true feature and distribution drift. This differs fundamentally from CICIDS2017, where 22 attack classes were absent on Friday, creating a structural Macro-F1 bound near 0.037.",
+  "validation_status": "PASS"
+}

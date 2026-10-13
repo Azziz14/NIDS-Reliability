@@ -17,16 +17,33 @@ Usage: python diagnostic_audit.py
 
 from pathlib import Path
 import json
+import sys
 import pandas as pd
 import numpy as np
 
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 ROOT = Path(__file__).resolve().parent
-RESULTS = ROOT / "results"
+
+# Support targeting UNSW-NB15 or CICIDS2017 results
+target_dir = ROOT / "results"
+if len(sys.argv) > 1 and sys.argv[1].lower() in ["unsw", "unsw_nb15", "--unsw"]:
+    target_dir = ROOT / "results" / "unsw_nb15"
+elif len(sys.argv) > 1 and sys.argv[1].lower() in ["cicids", "cicids2017", "--cicids"]:
+    target_dir = ROOT / "results"
+elif (ROOT / "results" / "unsw_nb15").exists() and not (ROOT / "results" / "validation.json").exists():
+    target_dir = ROOT / "results" / "unsw_nb15"
+
+RESULTS = target_dir
 
 print("=" * 80)
-print("NIDS RELIABILITY PROJECT — QUICK-RUN DIAGNOSTIC AUDIT")
+print(f"NIDS RELIABILITY PROJECT -- DIAGNOSTIC AUDIT ({RESULTS.name})")
 print("=" * 80)
-print()
+print(f"Audit Target Directory: {RESULTS}\n")
 
 # ============================================================================
 # 1. OUTPUT FILE INVENTORY
@@ -47,7 +64,12 @@ expected_outputs = [
     "experiment_config.json",
     "dataset_file_validation.json",
     "figure1_reference_vs_temporal_macro_f1.png",
+    "figure2_degradation.png",
+    "figure3_interaction.png",
+    "figure4_attack_recall_degradation.png",
+    "figure5_representative_confusion_matrix.png",
 ]
+
 
 found = []
 missing = []
@@ -84,14 +106,20 @@ if val_path.exists():
         validation = json.load(f)
     
     print(f"Dataset source:       {validation.get('dataset_source')}")
-    print(f"Temporal provenance:  {validation.get('temporal_provenance_mode')}")
-    print(f"Timestamp column:     {validation.get('timestamp_column')}")
-    print(f"Total rows:           {validation.get('rows_final'):,}")
-    print(f"Features:             {validation.get('numeric_features')}")
-    print(f"Classes:              {validation.get('classes')}")
+    print(f"Temporal provenance:  {validation.get('temporal_provenance_mode') or validation.get('provenance_mode')}")
+    print(f"Timestamp column:     {validation.get('timestamp_column', 'N/A (discrete capture session provenance)')}")
+    total_rows = validation.get('rows_final') or validation.get('total_unified_rows') or 0
+    print(f"Total rows:           {total_rows:,}")
+    feats = validation.get('numeric_features') or validation.get('numeric_features_count')
+    print(f"Features:             {feats}")
+    print(f"Classes:              {validation.get('classes') if isinstance(validation.get('classes'), int) else len(validation.get('classes', []))}")
     print(f"Quick validation:     {validation.get('quick_validation')}")
     print(f"Paper mode:           {validation.get('paper_mode')}")
-    print(f"Train sample limit:   {validation.get('fast_train_samples'):,}")
+    train_limit = validation.get('fast_train_samples')
+    if train_limit is not None:
+        print(f"Train sample limit:   {train_limit:,}")
+    else:
+        print("Train sample limit:   Full partition (Paper Mode)")
     print(f"Seeds:                {validation.get('seeds')}")
     print(f"Status:               {validation.get('validation_status')}")
 else:
@@ -331,13 +359,13 @@ if results is not None:
     if min_temporal_f1 < 0.30:
         issues.append(f"Very low temporal Macro-F1: {min_temporal_f1:.4f} — investigate unseen classes")
 
-print("✓ VERIFIED:")
+print("[OK] VERIFIED:")
 for item in ok:
     print(f"  - {item}")
 
 if issues:
     print()
-    print("⚠ REQUIRES ATTENTION:")
+    print("[WARN] REQUIRES ATTENTION:")
     for item in issues:
         print(f"  - {item}")
 
