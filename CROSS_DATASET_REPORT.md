@@ -26,7 +26,7 @@ This report presents a rigorous, empirical cross-dataset reliability evaluation 
   - *Overall Accuracy & False Alarm Mitigation (Majority-Sensitive):* XGBoost decisively leads in both Reference (81.83% Accuracy, 0.0232 FPR vs. LR's 77.44% / 0.0284 and RF's 75.38% / 0.0265) and Temporal holdouts (77.04% Accuracy, 0.0265 FPR vs. LR's 69.59% / 0.0346 and RF's 67.29% / 0.0347), providing superior global calibration and lower false positive rates.
   - *Binary Classification (Normal vs. Attack):* Random Forest achieves the highest performance under both Reference (0.9356 Macro-F1, 0.9396 Accuracy) and Temporal holdouts (0.9026 Macro-F1, 0.9052 Accuracy).
   - *Cross-Dataset Consistency:* Across both datasets and all evaluation conditions, both tree-based ensemble architectures substantially outperform linear models (Logistic Regression).
-- **Interaction Saturation vs. Continuous Coupling:** Combined stress interactions differ fundamentally between datasets. In CICIDS2017, the multiclass interaction term is strongly negative ($-0.058$ to $-0.229$) because temporal degradation already exceeds 94%, creating a floor effect where added missingness cannot proportionally worsen performance. In UNSW-NB15, where temporal degradation is partial (11.8% to 16.8%), combined stress exhibits near-additive interaction dynamics ($-0.004$ to $-0.046$) without artificial boundary saturation.
+- **Interaction Saturation vs. Continuous Coupling:** Combined stress interactions differ fundamentally between datasets. In CICIDS2017, the multiclass interaction term is strongly negative ($-0.043$ to $-0.100$) because temporal degradation already exceeds 94%, creating a floor effect where added missingness cannot proportionally worsen performance. In UNSW-NB15, where temporal degradation is partial (11.8% to 16.8%), combined stress exhibits near-additive interaction dynamics ($-0.004$ to $-0.046$) without artificial boundary saturation.
 
 ---
 
@@ -241,7 +241,7 @@ This research project delivers a reproducible, leakage-safe evaluation framework
 - **Part A Artifacts:** Complete five-seed paper outputs preserved at checkpoint `2fe4892`.
 - **Part B Artifacts:** 180-row authoritative dataset (`repeated_seed_results.csv`), summary statistics with 95% Student-$t$ CIs (`repeated_seed_summary.csv`), degradation tables, and Figures 1–6 in `results/unsw_nb15/`.
 - **Cross-Dataset Artifacts:** Comparative tables (`comparison_*.csv`) and comparative publication figures (`figure_cross_1` through `figure_cross_4`) in `results/cross_dataset/`.
-- **Documentation:** [UNSW_EXPERIMENT_DESIGN.md](file:///c:/Users/ashis/OneDrive/Desktop/pp1/NIDS-Reliability/UNSW_EXPERIMENT_DESIGN.md) and [CROSS_DATASET_REPORT.md](file:///c:/Users/ashis/OneDrive/Desktop/pp1/NIDS-Reliability/CROSS_DATASET_REPORT.md).
+- **Documentation:** [UNSW_EXPERIMENT_DESIGN.md](UNSW_EXPERIMENT_DESIGN.md) and [CROSS_DATASET_REPORT.md](CROSS_DATASET_REPORT.md).
 
 ---
 

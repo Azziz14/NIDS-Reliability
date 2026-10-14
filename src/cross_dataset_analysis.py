@@ -209,7 +209,7 @@ structural_summary = [
     },
     {
         "Dimension": "Interaction Profile (Multiclass)",
-        "CICIDS2017": "Sub-additive saturation (-0.058 to -0.229)",
+        "CICIDS2017": "Sub-additive saturation (-0.043 to -0.100)",
         "UNSW-NB15": "Continuous non-floor interaction",
         "Scientific Significance": "Extreme primary degradation in CICIDS2017 leaves little room for additive missingness damage."
     },
